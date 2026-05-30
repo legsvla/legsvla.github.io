@@ -1,0 +1,17 @@
+# macOS / Windows cruft
+.DS_Store
+Thumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+
+# Original source videos (only the .mp4 conversions are referenced from index.html)
+*.MOV
+*.mov
+*.webm
+
+# Local previews
+__pycache__/
+*.pyc

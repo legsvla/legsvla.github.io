@@ -1,0 +1,343 @@
+html {
+  font-size: 17px;
+}
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.65;
+}
+
+b, strong {
+  font-weight: 700;
+}
+
+.title.is-1.publication-title {
+  font-family: 'Google Sans', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  font-size: 3.25rem;
+}
+
+.publication-title {
+  font-family: 'Google Sans', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.publication-title .legs {
+  background: linear-gradient(90deg, #2a5298, #4b6cb7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+.publication-authors {
+  margin-top: 0.75rem;
+}
+
+.publication-authors .author-block {
+  display: inline-block;
+  margin-right: 0.5em;
+}
+
+.publication-links {
+  margin-top: 1.25rem;
+}
+
+.publication-links .link-block {
+  display: inline-block;
+  margin: 0.25rem 0.25rem;
+}
+
+.publication-links .button {
+  font-family: 'Google Sans', sans-serif;
+  background-color: #363636;
+  color: #fff;
+}
+
+.publication-links .button.is-disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.hero.teaser {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.placeholder {
+  color: #999;
+  font-style: italic;
+  border: 1px dashed #ddd;
+  border-radius: 6px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+}
+
+.teaser-img,
+.pipeline-img {
+  width: 100%;
+  max-width: 1100px;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.caption {
+  margin-top: 1rem;
+  color: #555;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  text-align: left;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.smallcaps {
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+}
+
+.section-subtitle {
+  color: #666;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  margin-top: -0.5rem;
+  margin-bottom: 2rem;
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-heading {
+  margin-top: 2.5rem !important;
+  margin-bottom: 1rem !important;
+  font-family: 'Google Sans', sans-serif;
+  color: #2a5298;
+}
+
+.video-grid {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.video-grid video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  background: #000;
+}
+
+.video-label {
+  text-align: center;
+  font-family: 'Google Sans', sans-serif;
+  font-weight: 500;
+  margin-top: 0.6rem;
+  color: #444;
+  font-size: 1.05rem;
+}
+
+.results-img {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 2rem;
+}
+
+.results-wrapper {
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.results-table {
+  font-family: 'Google Sans', sans-serif;
+  font-size: 1rem;
+}
+
+.results-table th,
+.results-table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.65em 0.5em;
+}
+
+.results-table th:first-child,
+.results-table td:first-child {
+  text-align: left;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.results-table .task-header {
+  background: #f7f9fc;
+  color: #2a5298;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.results-table .task-divider {
+  border-left: 2px solid #e0e6ef;
+}
+
+.results-table .best {
+  font-weight: 700;
+  color: #2a5298;
+}
+
+.results-table .ours-row {
+  background: #f7fbff;
+}
+
+.table-note {
+  max-width: 900px;
+  margin: 1.25rem auto 0;
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.hook {
+  max-width: 860px;
+  margin: 0 auto 1rem;
+  padding: 0 1rem;
+  font-size: 1.25rem;
+  line-height: 1.65;
+  color: #333;
+  text-align: center;
+}
+
+.hook b {
+  color: #2a5298;
+}
+
+.callout {
+  max-width: 860px;
+  margin: 2rem auto 0;
+  padding: 1.2rem 1.5rem;
+  background: #f4f7fc;
+  border-left: 4px solid #4b6cb7;
+  border-radius: 4px;
+  color: #333;
+  font-size: 1.08rem;
+  line-height: 1.65;
+}
+
+.highlights {
+  max-width: 1320px;
+  margin: 2rem auto 0;
+}
+
+.highlights .columns {
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+}
+
+.highlights .column {
+  display: flex;
+  padding: 0.75rem;
+}
+
+.highlight-block {
+  flex: 1;
+  padding: 1.4rem 1.6rem 1.5rem;
+  background: #f7fafe;
+  border-left: 4px solid #4b6cb7;
+  border-radius: 4px;
+}
+
+.highlight-q {
+  display: block;
+  font-family: 'Google Sans', sans-serif;
+  font-weight: 700;
+  color: #2a5298;
+  font-size: 1.3rem;
+  line-height: 1.35;
+  margin-bottom: 0.85rem;
+}
+
+.highlight-q .q-label {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: #2a5298;
+  color: #fff;
+  padding: 0.22rem 0.6rem;
+  border-radius: 3px;
+  vertical-align: middle;
+  margin-right: 0.7rem;
+}
+
+.highlight-a {
+  margin: 0;
+  color: #1a1a1a;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.highlight-a b {
+  color: #2a5298;
+  font-weight: 700;
+}
+
+.callout .callout-label {
+  display: block;
+  font-family: 'Google Sans', sans-serif;
+  font-weight: 600;
+  color: #2a5298;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  margin-bottom: 0.4rem;
+}
+
+/* Wider container for video-bearing sections so 3-up rows have breathing room */
+.container.is-max-video {
+  max-width: 1600px;
+}
+
+/* Mid-width container for the Key Results 2x2 highlight grid */
+.container.is-max-results {
+  max-width: 1380px;
+}
+
+.section .title.is-3 {
+  font-family: 'Google Sans', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.title.is-4.task-heading {
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.content p,
+.content {
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+#BibTeX pre {
+  background: #f5f5f5;
+  border-radius: 6px;
+  padding: 1rem;
+  font-size: 0.9rem;
+  overflow-x: auto;
+}
+
+.footer {
+  padding: 2rem 1.5rem;
+  background-color: #fafafa;
+}

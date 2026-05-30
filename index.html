@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="LEGS: Fine-Tuning Teleop-Free VLAs for Humanoid Loco-manipulation in an Embodied Gaussian Splatting World">
+  <meta name="keywords" content="LEGS, Humanoid, Loco-manipulation, VLA, Gaussian Splatting, Teleop-Free">
+  <title>LEGS: Fine-Tuning Teleop-Free VLAs for Humanoid Loco-manipulation in an Embodied Gaussian Splatting World</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+</head>
+
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">
+            <span class="legs">LEGS</span>: Fine-Tuning Teleop-Free VLAs for Humanoid Loco-manipulation in an Embodied Gaussian Splatting World
+          </h1>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Anonymous Authors</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Anonymous Affiliation</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- arXiv -->
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark is-disabled">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- PDF -->
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark is-disabled">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code -->
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark is-disabled">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <!-- Video -->
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark is-disabled">
+                  <span class="icon"><i class="fab fa-youtube"></i></span>
+                  <span>Video</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaser -->
+<section class="hero teaser">
+  <div class="container is-max-results">
+    <div class="hero-body has-text-centered">
+      <img src="./static/images/teaser.jpg" alt="LEGS teaser" class="teaser-img">
+      <p class="caption">
+        <b>L</b>oco-manipulation via <b>E</b>mbodied <b>G</b>aussian <b>S</b>platting
+        (<b>LEGS</b>) is a photorealistic loco-manipulation simulator that generates humanoid
+        training data without any real-robot data collection. Combining the physical fidelity
+        of MuJoCo, the visual fidelity of 3D Gaussian Splatting, and the object generalization
+        of SAM3D, LEGS produces inexpensive synthetic data for fine-tuning Vision-Language-Action
+        (VLA) models that transfer to the real robot zero-shot and outperform those trained on
+        teleoperation or mesh-only simulation.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Tagline hook -->
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <p class="hook">
+      Across <b>1,110 real-robot trials</b> on a Unitree&nbsp;G1, three pick-and-place tasks
+      of increasing whole-body difficulty, and three VLA backbones (&psi;<sub>0</sub>,
+      &pi;<sub>0.5</sub>, GR00T&nbsp;N1.6), policies fine-tuned purely on LEGS data
+      <b>match or exceed human teleoperation on every experiment</b>. The same recorded
+      motion re-renders under new scenes and objects at <b>~15&times; lower cost</b> than
+      re-collecting teleoperation demonstrations.
+    </p>
+  </div>
+</section>
+
+<!-- Abstract -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Training vision-language-action (VLA) policies for humanoid loco-manipulation
+            is constrained by the high cost and complexity of collecting human teleoperation
+            demonstrations. VLA policies fine-tuned in simulators have, until now, failed to
+            transfer effectively in humanoid loco-manipulation tasks.
+          </p>
+          <p>
+            We present <b>LEGS</b> (<b>L</b>oco-manipulation via <b>E</b>mbodied <b>G</b>aussian
+            <b>S</b>platting), a hybrid simulator that composites a mesh foreground (robot,
+            objects, props) over a photorealistic 3D Gaussian Splatting (3DGS) background
+            reconstructed from a handheld scene capture. LEGS uses a procedural
+            motion-primitive generator to synthesize labeled demonstrations at scale without
+            human teleoperation, and a deterministic two-stage color calibration to align the
+            rendered 3DGS image to the robot's deployment camera.
+          </p>
+          <p>
+            On a Unitree G1 humanoid robot, across three pick-and-place tasks of increasing
+            whole-body difficulty and three VLA backbones (&psi;<sub>0</sub>,
+            &pi;<sub>0.5</sub>, GR00T N1.6), a policy trained purely on LEGS data matches
+            or exceeds one trained on human teleoperation demos on every experiment. It also
+            outperforms a mesh-only simulation baseline that ablates the effect of the 3DGS
+            background, showing that photorealistic rendering is a key enabler for synthetic
+            data transfer.
+          </p>
+          <p>
+            Humanoid motion is recorded independently of scene appearance in LEGS, allowing
+            the same auto-generated demonstrations to be re-rendered under new backgrounds
+            and object meshes &mdash; covering a new scene at more than 15&times; lower cost
+            than teleoperation &mdash; to augment training data for robustness to scene
+            variations. Under combined object-and-scene appearance shift, the policy trained
+            on re-rendered <span class="smallcaps">LEGS-aug</span> data maintains task
+            success while the baseline trained on teleoperation data fails entirely.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Method / Pipeline -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width has-text-centered">
+        <h2 class="title is-3">Method</h2>
+        <img src="./static/images/pipeline.jpg" alt="LEGS pipeline" class="pipeline-img">
+        <p class="caption">
+          <b>The LEGS pipeline.</b>
+          A scene video and object photo are reconstructed into a 3DGS background and SAM3D
+          meshes, which feed the LEGS simulator. The simulator decouples a
+          <b>visual frontend</b> (3DGS and mesh compositor with color calibration) from a
+          <b>physics backend</b> (MuJoCo with the low-level whole-body controller).
+          A procedural generator produces labeled demonstrations, re-rendered under scene and
+          object augmentations, and used to fine-tune a VLA backbone
+          (&psi;<sub>0</sub>, &pi;<sub>0.5</sub>, GR00T N1.6) for real-robot deployment.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEGS Simulator -->
+<section class="section">
+  <div class="container is-max-video">
+    <h2 class="title is-3 has-text-centered">Inside the LEGS Simulator</h2>
+    <p class="section-subtitle has-text-centered">
+      Each pick-and-place task decomposes into <b>Walk</b> &rarr; <b>Pick</b> &rarr;
+      <b>Place</b> motion primitives. A procedural generator samples scene-level arguments
+      under each randomized initial condition, executes the trajectory in MuJoCo with the
+      whole-body controller, and saves only verified successful episodes.
+    </p>
+    <div class="columns is-centered video-grid">
+      <div class="column">
+        <video src="./static/videos/simulator/legs_t3_demo_crop.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
+        <p class="video-label">Task 3 &mdash; third-person view</p>
+      </div>
+      <div class="column">
+        <video src="./static/videos/simulator/task3.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
+        <p class="video-label">Task 3 &mdash; egocentric view</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Real-Robot Deployment -->
+<section class="section">
+  <div class="container is-max-video">
+    <h2 class="title is-3 has-text-centered">Real-Robot Deployment</h2>
+    <p class="section-subtitle has-text-centered">
+      Policies fine-tuned on <span class="smallcaps">LEGS</span>-generated data, deployed
+      zero-shot on a Unitree&nbsp;G1 with a head-mounted Intel RealSense D435 (30&nbsp;Hz RGB).
+      Ten trials per (data, backbone, task) cell, with object positions perturbed by
+      &plusmn;5&nbsp;cm, robot heading by &plusmn;10&deg;, and robot base by &plusmn;10&nbsp;cm
+      on loco-manipulation tasks.
+    </p>
+
+    <h3 class="title is-4 has-text-centered task-heading">Three tasks of increasing difficulty</h3>
+    <div class="columns is-centered video-grid">
+      <div class="column">
+        <video src="./static/videos/backbones/task1/t1_psi_good.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
+        <p class="video-label">Task 1 &mdash; manipulation only</p>
+      </div>
+      <div class="column">
+        <video src="./static/videos/backbones/task2/t2_psi_good.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
+        <p class="video-label">Task 2 &mdash; loco-manipulation</p>
+      </div>
+      <div class="column">
+        <video src="./static/videos/backbones/task3/t3_groot_good.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
+        <p class="video-label">Task 3 &mdash; walk, pick, turn, place</p>
+      </div>
+    </div>
+
+    <h3 class="title is-4 has-text-centered task-heading">Task 3 across three VLA backbones</h3>
+    <div class="columns is-centered video-grid">
+      <div class="column">
+        <video src="./static/videos/backbones/task3/t3_psi_good.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
+        <p class="video-label">&psi;<sub>0</sub></p>
+      </div>
+      <div class="column">
+        <video src="./static/videos/backbones/task3/t3_pi05_good.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
+        <p class="video-label">&pi;<sub>0.5</sub></p>
+      </div>
+      <div class="column">
+        <video src="./static/videos/backbones/task3/t3_groot_good.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
+        <p class="video-label">GR00T N1.6</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main Results -->
+<section class="section">
+  <div class="container is-max-results">
+    <h2 class="title is-3 has-text-centered">Key Results</h2>
+    <p class="section-subtitle has-text-centered">
+      Real-robot end-task success across three tasks, three VLA backbones, and four data
+      conditions &mdash; 1,110 trials total.
+    </p>
+
+    <div class="highlights">
+      <div class="columns is-multiline">
+        <div class="column is-half">
+          <div class="highlight-block">
+            <p class="highlight-q">
+              <span class="q-label">Q1</span>Can teleoperation-free synthetic data match human teleoperation for VLA fine-tuning?
+            </p>
+            <p class="highlight-a">
+              <b>Yes &mdash; on every (backbone, task) cell.</b>
+              <span class="smallcaps">LEGS</span>&nbsp;(200) matches or exceeds Teleop&nbsp;(50)
+              across all nine experiments. On the long-horizon Task&nbsp;3, teleoperation
+              collapses to <b>0/10</b> across all three backbones, whereas
+              <span class="smallcaps">LEGS</span> achieves up to 6/10.
+            </p>
+          </div>
+        </div>
+        <div class="column is-half">
+          <div class="highlight-block">
+            <p class="highlight-q">
+              <span class="q-label">Q2</span>Is the improvement attributable to dataset size?
+            </p>
+            <p class="highlight-a">
+              <b>No.</b> At a budget-matched 50 demonstrations,
+              <span class="smallcaps">LEGS</span>&nbsp;(50) still matches or surpasses
+              Teleop&nbsp;(50) on every experiment, isolating the gain to the
+              <i>data pipeline</i> rather than its scale.
+            </p>
+          </div>
+        </div>
+        <div class="column is-half">
+          <div class="highlight-block">
+            <p class="highlight-q">
+              <span class="q-label">Q3</span>Does photorealistic rendering matter, or does mesh-only synthesis suffice?
+            </p>
+            <p class="highlight-a">
+              <b>Photorealism approximately doubles end-task success.</b>
+              Holding the pipeline fixed, the mesh-only SAM3D&nbsp;(200) baseline averages
+              33% TSR versus <b>67%</b> for <span class="smallcaps">LEGS</span>&nbsp;(200),
+              with the gap concentrated at the close-range pick and place stages.
+            </p>
+          </div>
+        </div>
+        <div class="column is-half">
+          <div class="highlight-block">
+            <p class="highlight-q">
+              <span class="q-label">Q4</span>How efficiently can <span class="smallcaps">LEGS</span> adapt to new appearance conditions?
+            </p>
+            <p class="highlight-a">
+              <b>~15&times; cheaper than teleoperation, with task success retained.</b>
+              Each new appearance condition requires ~0.1&nbsp;GPU-hr to re-render versus
+              &gt;1.5&nbsp;operator-hr to re-teleoperate. Under the hardest object-and-scene shift,
+              <span class="smallcaps">LEGS-aug</span> reaches
+              <b>100&thinsp;/&thinsp;80&thinsp;/&thinsp;40%</b> on Tasks&nbsp;1&ndash;3,
+              while both teleoperation and unaugmented <span class="smallcaps">LEGS</span> fail.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-container results-wrapper" style="margin-top: 2.5rem;">
+      <table class="table is-fullwidth results-table">
+        <thead>
+          <tr>
+            <th rowspan="2">Data condition</th>
+            <th colspan="3" class="task-divider task-header">Task 1</th>
+            <th colspan="3" class="task-divider task-header">Task 2</th>
+            <th colspan="3" class="task-divider task-header">Task 3</th>
+          </tr>
+          <tr>
+            <th class="task-divider">&psi;<sub>0</sub></th>
+            <th>&pi;<sub>0.5</sub></th>
+            <th>GR00T</th>
+            <th class="task-divider">&psi;<sub>0</sub></th>
+            <th>&pi;<sub>0.5</sub></th>
+            <th>GR00T</th>
+            <th class="task-divider">&psi;<sub>0</sub></th>
+            <th>&pi;<sub>0.5</sub></th>
+            <th>GR00T</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Teleop (50)</td>
+            <td class="task-divider">8/10</td><td>2/10</td><td>4/10</td>
+            <td class="task-divider">6/10</td><td>0/10</td><td>2/10</td>
+            <td class="task-divider">0/10</td><td>0/10</td><td>0/10</td>
+          </tr>
+          <tr>
+            <td>SAM3D (200)</td>
+            <td class="task-divider">7/10</td><td>1/10</td><td>6/10</td>
+            <td class="task-divider">4/10</td><td>3/10</td><td>5/10</td>
+            <td class="task-divider">1/10</td><td>0/10</td><td>3/10</td>
+          </tr>
+          <tr>
+            <td><span class="smallcaps">LEGS</span> (50)</td>
+            <td class="task-divider">8/10</td><td>5/10</td><td class="best">9/10</td>
+            <td class="task-divider">8/10</td><td>4/10</td><td>7/10</td>
+            <td class="task-divider">3/10</td><td>1/10</td><td>5/10</td>
+          </tr>
+          <tr class="ours-row">
+            <td><span class="smallcaps">LEGS</span> (200)</td>
+            <td class="task-divider best">10/10</td><td class="best">6/10</td><td class="best">9/10</td>
+            <td class="task-divider best">9/10</td><td class="best">5/10</td><td class="best">8/10</td>
+            <td class="task-divider best">5/10</td><td class="best">2/10</td><td class="best">6/10</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">
+      End-task success out of 10 trials per data condition, backbone, and task. Best per
+      (backbone, task) in <b>bold</b>. <span class="smallcaps">LEGS</span>&nbsp;(200) is the
+      main dataset; <span class="smallcaps">LEGS</span>&nbsp;(50) is a 50-episode subsample
+      for a budget-matched comparison against the 50-demo teleop baseline.
+    </p>
+  </div>
+</section>
+
+<!-- LEGS vs Baselines (Egocentric) -->
+<section class="section">
+  <div class="container is-max-video">
+    <h2 class="title is-3 has-text-centered">Egocentric Comparison Across Data Sources</h2>
+    <p class="section-subtitle has-text-centered">
+      Task&nbsp;3 deployments from the same VLA backbone fine-tuned on four data conditions.
+      <span class="smallcaps">LEGS</span> matches or exceeds teleoperation and outperforms
+      the mesh-only SAM3D baseline, identifying <b>photorealistic rendering</b> as the key
+      enabler of synthetic-data transfer.
+    </p>
+    <div class="columns is-centered video-grid">
+      <div class="column">
+        <video src="./static/videos/egocentric/t3_legs_ep46.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
+        <p class="video-label">LEGS (ours)</p>
+      </div>
+      <div class="column">
+        <video src="./static/videos/egocentric/t3_legs_ep46_aug.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
+        <p class="video-label">LEGS-aug (ours)</p>
+      </div>
+      <div class="column">
+        <video src="./static/videos/egocentric/t3_sam_ep46.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
+        <p class="video-label">SAM3D (mesh-only)</p>
+      </div>
+      <div class="column">
+        <video src="./static/videos/egocentric/t3_teleop_ep15.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
+        <p class="video-label">Teleoperation</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Robustness to Object Pose -->
+<section class="section">
+  <div class="container is-max-video">
+    <h2 class="title is-3 has-text-centered">Robustness to Initial Object Pose</h2>
+    <p class="section-subtitle has-text-centered">
+      Task 3 deployments under lateral perturbations of the orange's initial position,
+      sampling the boundary of the &plusmn;5&nbsp;cm training distribution.
+    </p>
+    <div class="columns is-centered video-grid">
+      <div class="column">
+        <video src="./static/videos/challenging/t3_groot_default_hard_left.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
+        <p class="video-label">Lateral perturbation &mdash; left bound</p>
+      </div>
+      <div class="column">
+        <video src="./static/videos/challenging/t3_groot_default_hard_right.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
+        <p class="video-label">Lateral perturbation &mdash; right bound</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEGS-aug Appearance Randomization -->
+<section class="section">
+  <div class="container is-max-video">
+    <h2 class="title is-3 has-text-centered">LEGS-aug: Low-Labor Appearance Adaptation</h2>
+    <p class="section-subtitle has-text-centered">
+      Because foreground motion is recorded independently of scene appearance, each
+      additional appearance condition is generated by re-rendering the existing motion at
+      <b>~0.1&nbsp;GPU-hr versus &gt;1.5&nbsp;operator-hr</b> for teleoperation
+      (&asymp;15&times; cheaper). Policies trained on re-rendered
+      <span class="smallcaps">LEGS-aug</span> data retain task success under scene-only,
+      object-only, and combined shifts.
+    </p>
+    <div class="columns is-centered video-grid">
+      <div class="column">
+        <video src="./static/videos/appearance/t3_groot_scene_good.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
+        <p class="video-label">Scene shift</p>
+      </div>
+      <div class="column">
+        <video src="./static/videos/appearance/t3_groot_objects_good.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
+        <p class="video-label">Object shift</p>
+      </div>
+      <div class="column">
+        <video src="./static/videos/appearance/t3_groot_objects+scene_good.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
+        <p class="video-label">Scene + object shift</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BibTeX -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{legs2026,
+  title   = {LEGS: Fine-Tuning Teleop-Free VLAs for Humanoid Loco-manipulation in an Embodied Gaussian Splatting World},
+  author  = {Anonymous},
+  journal = {arXiv preprint},
+  year    = {2026},
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            Website template borrowed from
+            <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> /
+            <a href="https://github.com/eliahuhorwitz/Academic-project-page-template">Academic Project Page Template</a>,
+            licensed under
+            <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
