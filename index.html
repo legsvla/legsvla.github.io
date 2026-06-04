@@ -370,35 +370,42 @@
       collected episode with novel objects (apple, red apple, box, bowl) and novel scene backgrounds
       (wood, blue, white tables). The same underlying trajectory is replayed against every
       object-pair &times; background combination, giving the policy broad coverage of appearance
-      variation without re-collecting demonstrations. Pick an object pair and a background below to
-      view the corresponding rendered episode.
+      variation without re-collecting demonstrations. Drag the slider to change the table background;
+      the three task prompts below replay in sync.
     </p>
 
-    <div class="legs-aug-controls">
-      <div class="control-group">
-        <span class="control-label">Object pair:</span>
-        <div class="buttons has-addons is-centered" id="legsaug-pair">
-          <button class="button" data-value="OP">orange &rarr; plate</button>
-          <button class="button is-link is-selected" data-value="AB">green apple &rarr; box</button>
-          <button class="button" data-value="RB">red apple &rarr; bowl</button>
-        </div>
+    <div class="legs-aug-slider">
+      <div class="slider-ticks">
+        <span data-value="0">wood</span>
+        <span data-value="1">blue</span>
+        <span data-value="2">white</span>
       </div>
-      <div class="control-group">
-        <span class="control-label">Background:</span>
-        <div class="buttons has-addons is-centered" id="legsaug-bg">
-          <button class="button" data-value="wood">wood</button>
-          <button class="button is-link is-selected" data-value="blue">blue</button>
-          <button class="button" data-value="white">white</button>
-        </div>
-      </div>
+      <input type="range" id="legsaug-bg-slider" min="0" max="2" step="1" value="1" list="legsaug-bg-stops">
+      <datalist id="legsaug-bg-stops">
+        <option value="0"></option>
+        <option value="1"></option>
+        <option value="2"></option>
+      </datalist>
     </div>
 
     <div class="columns is-centered video-grid">
-      <div class="column is-half">
-        <video id="legsaug-video"
+      <div class="column">
+        <video data-pair="OP"
+               src="./static/videos/legs_aug_ep2/blue_OP.mp4"
+               autoplay muted loop playsinline controls preload="metadata"></video>
+        <p class="video-label">&ldquo;place the orange on the plate&rdquo;</p>
+      </div>
+      <div class="column">
+        <video data-pair="AB"
                src="./static/videos/legs_aug_ep2/blue_AB.mp4"
                autoplay muted loop playsinline controls preload="metadata"></video>
-        <p class="video-label" id="legsaug-label">green apple &rarr; box &mdash; blue table</p>
+        <p class="video-label">&ldquo;place the apple in the box&rdquo;</p>
+      </div>
+      <div class="column">
+        <video data-pair="RB"
+               src="./static/videos/legs_aug_ep2/blue_RB.mp4"
+               autoplay muted loop playsinline controls preload="metadata"></video>
+        <p class="video-label">&ldquo;place the apple in the bowl&rdquo;</p>
       </div>
     </div>
   </div>
@@ -406,35 +413,25 @@
 
 <script>
 (function() {
-  const PAIR_NAMES = {OP: "orange &rarr; plate", AB: "green apple &rarr; box", RB: "red apple &rarr; bowl"};
-  const BG_NAMES   = {wood: "wood", blue: "blue", white: "white"};
-  let pair = "AB";
-  let bg = "blue";
-
-  const video = document.getElementById("legsaug-video");
-  const label = document.getElementById("legsaug-label");
+  const BG_BY_INDEX = ["wood", "blue", "white"];
+  const slider = document.getElementById("legsaug-bg-slider");
+  const videos = document.querySelectorAll('.legs-aug-slider ~ .video-grid video[data-pair]');
+  const ticks  = document.querySelectorAll('.legs-aug-slider .slider-ticks span');
 
   function update() {
-    video.src = `./static/videos/legs_aug_ep2/${bg}_${pair}.mp4`;
-    label.innerHTML = `${PAIR_NAMES[pair]} &mdash; ${BG_NAMES[bg]} table`;
-    video.load();
-    video.play().catch(() => {});
-  }
-
-  function wire(groupId, setter) {
-    const buttons = document.querySelectorAll(`#${groupId} button`);
-    buttons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        buttons.forEach(b => b.classList.remove("is-link", "is-selected"));
-        btn.classList.add("is-link", "is-selected");
-        setter(btn.dataset.value);
-        update();
-      });
+    const bg = BG_BY_INDEX[parseInt(slider.value, 10)];
+    videos.forEach(v => {
+      v.src = `./static/videos/legs_aug_ep2/${bg}_${v.dataset.pair}.mp4`;
+      v.load();
+      v.play().catch(() => {});
+    });
+    ticks.forEach(t => {
+      t.classList.toggle("is-active", parseInt(t.dataset.value, 10) === parseInt(slider.value, 10));
     });
   }
 
-  wire("legsaug-pair", v => { pair = v; });
-  wire("legsaug-bg",   v => { bg = v; });
+  slider.addEventListener("input", update);
+  update();
 })();
 </script>
 
