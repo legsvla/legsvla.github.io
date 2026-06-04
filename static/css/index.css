@@ -152,6 +152,34 @@ b, strong {
   margin-bottom: 2rem;
 }
 
+.legs-aug-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem 2.5rem;
+  margin: 1.25rem 0 1.5rem;
+}
+
+.legs-aug-controls .control-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.legs-aug-controls .control-label {
+  font-family: 'Google Sans', sans-serif;
+  font-weight: 500;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.legs-aug-controls .button.is-selected {
+  background-color: #2a5298;
+  border-color: #2a5298;
+  color: #fff;
+}
+
 .results-wrapper {
   max-width: 950px;
   margin: 0 auto;

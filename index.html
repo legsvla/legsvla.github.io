@@ -339,7 +339,7 @@
   <div class="container is-max-video">
     <h2 class="title is-3 has-text-centered">Egocentric Comparison Across Data Sources</h2>
     <p class="section-subtitle has-text-centered">
-      Task&nbsp;3 deployments from the same VLA backbone fine-tuned on four data conditions.
+      Task&nbsp;3 deployments from the same VLA backbone fine-tuned on three data conditions.
       <span class="smallcaps">LEGS</span> matches or exceeds teleoperation and outperforms
       the mesh-only SAM3D baseline, identifying <b>photorealistic rendering</b> as the key
       enabler of synthetic-data transfer.
@@ -348,10 +348,6 @@
       <div class="column">
         <video src="./static/videos/egocentric/t3_legs_ep46.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
         <p class="video-label">LEGS (ours)</p>
-      </div>
-      <div class="column">
-        <video src="./static/videos/egocentric/t3_legs_ep46_aug.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
-        <p class="video-label">LEGS-AUG (ours)</p>
       </div>
       <div class="column">
         <video src="./static/videos/egocentric/t3_sam_ep46.mp4" autoplay muted loop playsinline controls preload="metadata"></video>
@@ -364,6 +360,83 @@
     </div>
   </div>
 </section>
+
+<!-- LEGS-AUG selector -->
+<section class="section">
+  <div class="container is-max-video">
+    <h2 class="title is-3 has-text-centered">LEGS-AUG: Object &amp; Scene Randomization</h2>
+    <p class="section-subtitle has-text-centered">
+      <span class="smallcaps">LEGS-AUG</span> extends <span class="smallcaps">LEGS</span> by re-rendering each
+      collected episode with novel objects (apple, red apple, box, bowl) and novel scene backgrounds
+      (wood, blue, white tables). The same underlying trajectory is replayed against every
+      object-pair &times; background combination, giving the policy broad coverage of appearance
+      variation without re-collecting demonstrations. Pick an object pair and a background below to
+      view the corresponding rendered episode.
+    </p>
+
+    <div class="legs-aug-controls">
+      <div class="control-group">
+        <span class="control-label">Object pair:</span>
+        <div class="buttons has-addons is-centered" id="legsaug-pair">
+          <button class="button" data-value="OP">orange &rarr; plate</button>
+          <button class="button is-link is-selected" data-value="AB">green apple &rarr; box</button>
+          <button class="button" data-value="RB">red apple &rarr; bowl</button>
+        </div>
+      </div>
+      <div class="control-group">
+        <span class="control-label">Background:</span>
+        <div class="buttons has-addons is-centered" id="legsaug-bg">
+          <button class="button" data-value="wood">wood</button>
+          <button class="button is-link is-selected" data-value="blue">blue</button>
+          <button class="button" data-value="white">white</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered video-grid">
+      <div class="column is-half">
+        <video id="legsaug-video"
+               src="./static/videos/legs_aug_ep2/blue_AB.mp4"
+               autoplay muted loop playsinline controls preload="metadata"></video>
+        <p class="video-label" id="legsaug-label">green apple &rarr; box &mdash; blue table</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  const PAIR_NAMES = {OP: "orange &rarr; plate", AB: "green apple &rarr; box", RB: "red apple &rarr; bowl"};
+  const BG_NAMES   = {wood: "wood", blue: "blue", white: "white"};
+  let pair = "AB";
+  let bg = "blue";
+
+  const video = document.getElementById("legsaug-video");
+  const label = document.getElementById("legsaug-label");
+
+  function update() {
+    video.src = `./static/videos/legs_aug_ep2/${bg}_${pair}.mp4`;
+    label.innerHTML = `${PAIR_NAMES[pair]} &mdash; ${BG_NAMES[bg]} table`;
+    video.load();
+    video.play().catch(() => {});
+  }
+
+  function wire(groupId, setter) {
+    const buttons = document.querySelectorAll(`#${groupId} button`);
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        buttons.forEach(b => b.classList.remove("is-link", "is-selected"));
+        btn.classList.add("is-link", "is-selected");
+        setter(btn.dataset.value);
+        update();
+      });
+    });
+  }
+
+  wire("legsaug-pair", v => { pair = v; });
+  wire("legsaug-bg",   v => { bg = v; });
+})();
+</script>
 
 <!-- Robustness to Object Pose -->
 <section class="section">
