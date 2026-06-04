@@ -164,7 +164,7 @@ b, strong {
   touch-action: none;
 }
 
-.legsaug-layer {
+.legsaug-compare .legsaug-layer {
   position: absolute;
   top: 0;
   left: 0;
@@ -173,6 +173,9 @@ b, strong {
   object-fit: cover;
   display: block;
   pointer-events: none;
+  border-radius: 0;
+  box-shadow: none;
+  background: #000;
 }
 
 .legsaug-divider {
