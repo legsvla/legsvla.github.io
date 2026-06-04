@@ -370,12 +370,8 @@
   <div class="container is-max-video">
     <h2 class="title is-3 has-text-centered">LEGS-AUG: Object &amp; Scene Randomization</h2>
     <p class="section-subtitle has-text-centered">
-      <span class="smallcaps">LEGS-AUG</span> extends <span class="smallcaps">LEGS</span> by re-rendering each
-      collected episode with novel objects (apple, red apple, box, bowl) and novel scene backgrounds
-      (wood, blue, white tables). The same underlying trajectory is replayed against every
-      object-pair &times; background combination, giving the policy broad coverage of appearance
-      variation without re-collecting demonstrations. Drag the vertical bars on each video to reveal
-      more of the wood, blue, or white background; all three task prompts stay synchronized in time.
+      Each collected episode is re-rendered across novel object pairs and table backgrounds
+      &mdash; broad appearance coverage from a single demonstration. Drag the bars to switch backgrounds.
     </p>
 
     <div class="columns is-centered video-grid legsaug-compare-grid">
