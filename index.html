@@ -512,8 +512,8 @@
 
     <!-- Native chart: end-task success by task and data condition -->
     <div class="viz-root" id="chart-main" style="max-width: 1100px;">
-      <p class="viz-title">End-task success by backbone, task, and data condition</p>
-      <p class="viz-sub">Exact per-cell values from the paper (10 trials per cell).</p>
+      <p class="viz-title">LEGS (200) is best or tied on every task and every backbone</p>
+      <p class="viz-sub">Even at the same data budget, LEGS (50) beats Teleop (50).</p>
       <div class="viz-legend">
         <span class="key"><span class="swatch" style="background: var(--s-teleop);"></span>Teleop (50)</span>
         <span class="key"><span class="swatch" style="background: var(--s-sam3d);"></span>SAM3D (200)</span>
@@ -609,17 +609,15 @@
           <div class="viz-xlabels"><span>T1</span><span>T2</span><span>T3</span></div>
         </div>
       </div>
-      <p class="viz-note">Successes out of 10 trials. LEGS (200) is best or tied on all nine (backbone, task) experiments; on Task&nbsp;3, teleoperation is 0/10 for every backbone.</p>
     </div>
 
 
     <div class="viz-root" id="chart-aug" style="max-width: 1100px;">
       <p class="viz-title">Under the hardest shift (objects + scene), re-rendering wins</p>
-      <p class="viz-sub">Real-robot TSR under combined object-and-scene shift. All 50-episode default-only baselines collapse to 0&ndash;1/10.</p>
 
       <div class="aug-panels">
       <div class="aug-panel">
-      <p class="viz-panel-label"><span class="viz-panel-head">(a) Photorealism beats mesh-only:</span><span class="viz-panel-sub">LEGS-aug beats SAM3D-aug at 200 episodes</span></p>
+      <p class="viz-panel-label">(a) Photorealism beats mesh-only</p>
       <div class="viz-legend">
         <span class="key"><span class="swatch" style="background: var(--s-sam3d);"></span>SAM3D-aug (200)</span>
         <span class="key"><span class="swatch" style="background: var(--s-legs200);"></span>LEGS-aug (200) &mdash; ours</span>
@@ -650,7 +648,7 @@
 
       </div>
       <div class="aug-panel">
-      <p class="viz-panel-label"><span class="viz-panel-head">(b) Augmentation beats scale:</span><span class="viz-panel-sub">50 re-rendered episodes beat 200 default-only</span></p>
+      <p class="viz-panel-label">(b) Augmentation beats scale</p>
       <div class="viz-legend">
         <span class="key"><span class="swatch" style="background: var(--s-legs50);"></span>LEGS (200), default-only</span>
         <span class="key"><span class="swatch" style="background: var(--s-legs200);"></span>LEGS-aug (50)</span>
